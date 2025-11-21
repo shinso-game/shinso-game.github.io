@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shinso Game | Indie Dev Showcase</title>
+  <style>
+    :root {
+      font-family: "Segoe UI", Arial, sans-serif;
+      color: #f5f6ff;
+      background-color: #05060a;
+      scroll-behavior: smooth;
+      --accent: #6c63ff;
+      --accent-alt: #f9a826;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at top, #0c1224, #05060a 65%);
+    }
+
+    header {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 1.5rem;
+      background: #05060a;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("images/Banner.jpeg") center/cover no-repeat;
+      opacity: 0.35;
+      filter: blur(2px);
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(145deg, rgba(8, 12, 26, 0.85), rgba(17, 22, 46, 0.95));
+    }
+
+    .hero {
+      position: relative;
+      max-width: 820px;
+      z-index: 1;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 0.9rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 999px;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 0.15rem;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      margin: 1.2rem 0;
+      line-height: 1.1;
+    }
+
+    p.lead {
+      font-size: 1.2rem;
+      color: rgba(245, 246, 255, 0.8);
+      margin-bottom: 2rem;
+    }
+
+    .cta {
+      display: inline-flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 0.95rem 2rem;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 15px 35px rgba(108, 99, 255, 0.35);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    main {
+      padding: 4rem 1.25rem 6rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    section {
+      margin-top: 4rem;
+      padding: 2rem;
+      border-radius: 30px;
+      background: rgba(9, 10, 23, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      padding: 1.5rem;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: var(--accent-alt);
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 1.5rem;
+      border-left: 2px dashed rgba(255, 255, 255, 0.15);
+    }
+
+    .milestone {
+      margin-bottom: 1.5rem;
+    }
+
+    .milestone span {
+      display: inline-block;
+      font-size: 0.85rem;
+      letter-spacing: 0.1rem;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .milestone strong {
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .gallery figure {
+      margin: 0;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .gallery img {
+      width: 100%;
+      display: block;
+      height: 240px;
+      object-fit: cover;
+    }
+
+    .gallery figcaption {
+      padding: 1rem;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    .contact {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact a {
+      color: var(--accent-alt);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="hero">
+      <div class="badge">Indie Dev • Shinso Studio</div>
+      <h1>Shinso Game – Hành trình indie đầy cảm hứng</h1>
+      <p class="lead">
+        Một thế giới hành động siêu năng lực được xây dựng bởi một nhà phát triển độc lập
+        yêu thích cả anime lẫn game nhập vai. Từ ý tưởng trên giấy đến bản build đầu tiên,
+        tôi muốn đưa người chơi vào một tuyến truyện đậm chất anime với cơ chế chiến đấu tinh gọn.
+      </p>
+      <div class="cta">
+        <button class="btn btn-primary">Tải demo</button>
+        <button class="btn btn-secondary">Theo dõi lộ trình</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about">
+      <h2>Tôi là ai?</h2>
+      <p>
+        Tôi là một indie dev đang dành toàn bộ thời gian cho Shinso Game – dự án cá nhân được nuôi dưỡng bằng niềm đam mê kể chuyện.
+        Sứ mệnh: tạo ra một trải nghiệm chiến đấu tốc độ cao, dễ làm quen nhưng khó thành thạo, đi kèm nghệ thuật cel-shading tối giản.
+      </p>
+      <div class="grid">
+        <div class="card">
+          <h3>Phong cách chiến đấu</h3>
+          <p>Combo dựa trên nhịp, chuyển đổi dạng sức mạnh và parry chính xác từng frame.</p>
+        </div>
+        <div class="card">
+          <h3>Không gian nghệ thuật</h3>
+          <p>Tông màu tím – cam neon, gợi cảm giác siêu nhiên và nhịp đập thành phố tương lai.</p>
+        </div>
+        <div class="card">
+          <h3>Âm nhạc</h3>
+          <p>Lo-fi xen lẫn drops điện tử mạnh mẽ, được tạo bằng các synth tự build trong DAW.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="features">
+      <h2>Điểm nhấn gameplay</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Story-Driven</h3>
+          <p>Chương truyện mở khóa theo lựa chọn, nhiều ending phản ánh cách bạn sử dụng sức mạnh Shinso.</p>
+        </div>
+        <div class="card">
+          <h3>Combat Sandbox</h3>
+          <p>Thử nghiệm combo với hệ thống training lab, chia sẻ preset đòn đánh với cộng đồng.</p>
+        </div>
+        <div class="card">
+          <h3>Social Co-op</h3>
+          <p>Ghép đội 2 người, đồng bộ cooldown, thực hiện Ultimate kép để mở khóa lore ẩn.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="roadmap">
+      <h2>Lộ trình phát triển</h2>
+      <div class="timeline">
+        <div class="milestone">
+          <span>Q4 2024</span>
+          <strong>Prototype Core Combat</strong>
+          <p>Hoàn thiện hệ thống chuyển dạng và camera dynamic.</p>
+        </div>
+        <div class="milestone">
+          <span>Q1 2025</span>
+          <strong>Alpha Closed Test</strong>
+          <p>Mời 200 tester tham gia feedback về nhịp độ và mức độ khó.</p>
+        </div>
+        <div class="milestone">
+          <span>Q2 2025</span>
+          <strong>Art Direction Update</strong>
+          <p>Nâng cấp shader, thêm cutscene cinematic ngắn.</p>
+        </div>
+        <div class="milestone">
+          <span>Q4 2025</span>
+          <strong>Early Access</strong>
+          <p>Ra mắt trên PC, hỗ trợ tay cầm, tích hợp Steam Workshop cho mod giao diện.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <h2>Hình ảnh trong game</h2>
+      <p>
+        Một vài khung hình từ build hiện tại và concept art. Tất cả được dựng thủ công để giữ trọn cảm xúc anime pha hành động.
+      </p>
+      <div class="gallery">
+        <figure>
+          <img src="images/Avatar1.jpg" alt="Nhân vật Shinso trong trạng thái Overdrive">
+          <figcaption>Nhân vật chính kích hoạt Overdrive giữa thành phố neon.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/Avatar3.jpg" alt="Giao diện combat của Shinso Game">
+          <figcaption>UI chiến đấu tối giản, tập trung vào chuyển động và parry.</figcaption>
+        </figure>
+        <figure>
+          <img src="images/Logo_Shinso.png" alt="Logo Shinso Game">
+          <figcaption>Logo chính thức của Shinso Game dùng trong devlog và social.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Liên hệ & cộng đồng</h2>
+      <div class="contact">
+        <p>Email: <a href="mailto:shinsogamel@gmail.com">shinsogamel@gmail.com</a></p>
+        <p>Discord: <a href="https://discord.gg/kKDfW5fvCr" target="_blank" rel="noreferrer">https://discord.gg/kKDfW5fvCr</a></p>
+        <p>Đăng ký nhận devlog: <a href="#">Form Google</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © 2025 Shinso Studio. Xây dựng bằng tình yêu indie và những buổi đêm trắng.
+  </footer>
+</body>
+</html>
+
